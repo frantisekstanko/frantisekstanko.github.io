@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body>
+
+    {%- include header.html -%}
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const themeSwitcher = document.getElementById('theme-switcher');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function updateThemeIcon(theme) {
+          if (theme === 'dark') {
+            themeIcon.querySelector('.moon-icon').style.display = 'none';
+            themeIcon.querySelector('.sun-icon').style.display = 'block';
+            return
+          }
+
+          themeIcon.querySelector('.moon-icon').style.display = 'block';
+          themeIcon.querySelector('.sun-icon').style.display = 'none';
+        }
+
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        updateThemeIcon(currentTheme);
+
+        themeSwitcher.addEventListener('click', function() {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          updateThemeIcon(newTheme);
+        });
+      });
+    </script>
+  </body>
+
+</html>

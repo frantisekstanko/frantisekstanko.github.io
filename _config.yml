@@ -1,0 +1,36 @@
+title: Frantisek Stanko's Blog
+description: Software engineer's musings, thoughts, and experiments.
+author: Frantisek Stanko
+email: frantisek.stanko@protonmail.com
+url: "https://frantisekstanko.github.io"
+baseurl: ""
+
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+header_pages:
+  - about.md
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/bundle/
+
+paginate: 10
+paginate_path: "/page:num/"
+
+collections:
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Frantisek Stanko"
